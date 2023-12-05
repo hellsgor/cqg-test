@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "MyStore": {
+    "cqg-test-task": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "MyStore:build:production"
+              "browserTarget": "cqg-test-task:build:production"
             },
             "development": {
-              "browserTarget": "MyStore:build:development"
+              "browserTarget": "cqg-test-task:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "MyStore:build"
+            "browserTarget": "cqg-test-task:build"
           }
         },
         "test": {
