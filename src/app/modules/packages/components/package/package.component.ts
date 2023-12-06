@@ -4,7 +4,7 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { IPackage } from '../../models';
+import { IFullPackage } from '../../models';
 
 @Component({
   selector: 'app-package',
@@ -13,7 +13,7 @@ import { IPackage } from '../../models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PackageComponent implements OnInit {
-  @Input() packageItem: IPackage | undefined;
+  @Input() packageItem: IFullPackage | undefined;
 
   constructor() {}
 

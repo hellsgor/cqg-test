@@ -1,5 +1,8 @@
 <article class="package">
-  <h4 class="package__title">{{packageItem?.id}}</h4>
+  <h4 class="package__title">
+    <span class="package__composite-name">{{packageItem?.compositeName}}</span>
+    <span class="package__name">{{packageItem?.name}}</span>
+  </h4>
   <div class="package__wrapper">
     <p class="package__downloads">{{packageItem?.weeklyDownloads  | abbreviateNumber}}</p>
     <div class="package__dependencies-wrapper">
