@@ -1,10 +1,12 @@
+@mixin transition($prop) {
+  transition: $prop ease-in-out .3s;
+}
+
 .package {
   $package-padding: 16px;
+  $border-radius: 16px;
 
-  overflow: hidden;
   min-width: 259px;
-  border: 1px solid #000;
-  border-radius: 16px;
 
   &__downloads {
     $icon-size: 14px;
@@ -27,15 +29,21 @@
 
   &__title {
     padding: $package-padding;
-    border-bottom: 1px solid #000;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
     margin: 0;
     background-color: #000;
     color: #fff;
+    @include transition(background-color);
   }
 
   &__wrapper {
     display: flex;
     padding: $package-padding;
+    border: 1px solid #000;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    border-top: none;
     flex-direction: column;
     row-gap: 8px;
   }
@@ -47,5 +55,19 @@
 
   &__composite-name {
     color: #ffa500;
+    @include transition(color);
+  }
+
+  &:hover {
+    .package {
+      &__title {
+        background-color: #ffa500;
+      }
+
+      &__composite-name {
+        color: #000;
+      }
+    }
+
   }
 }
