@@ -1,8 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
-  OnInit,
+  Output,
 } from '@angular/core';
 import { IFullPackage } from '../../models';
 
@@ -12,10 +13,28 @@ import { IFullPackage } from '../../models';
   styleUrls: ['./package.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PackageComponent implements OnInit {
-  @Input() packageItem: IFullPackage | undefined;
+export class PackageComponent {
+  @Input() packageItem!: IFullPackage;
 
-  constructor() {}
+  @Input() isDependent: boolean = false;
 
-  ngOnInit(): void {}
+  @Output() packageSelected: EventEmitter<IFullPackage> =
+    new EventEmitter<IFullPackage>();
+
+  @Output() packageUnselected: EventEmitter<IFullPackage> =
+    new EventEmitter<IFullPackage>();
+
+  public onMouseEnter() {
+    if (this.packageItem.dependencyCount > 0) {
+      this.packageSelected.emit(this.packageItem); // добавьте EventEmitter в компонент и соответствующее свойство
+    }
+  }
+
+  public onMouseLeave() {
+    this.removePackageHoverClass();
+  }
+
+  private removePackageHoverClass() {
+    this.packageUnselected.emit(this.packageItem);
+  }
 }

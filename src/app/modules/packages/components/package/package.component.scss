@@ -8,6 +8,12 @@
 
   min-width: 259px;
 
+  &_dependent {
+    .package__title {
+      background-color: red;
+    }
+  }
+
   &__downloads {
     $icon-size: 14px;
     display: flex;
