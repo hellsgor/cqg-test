@@ -13,7 +13,7 @@ import { IPackage } from '../../models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PackageComponent implements OnInit {
-  @Input() package: IPackage | undefined;
+  @Input() packageItem: IPackage | undefined;
 
   constructor() {}
 

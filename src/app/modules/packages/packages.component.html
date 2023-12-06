@@ -3,7 +3,7 @@
   <div class="packages__wrapper">
     <app-package
       *ngFor="let p of packages$ | async; trackBy: packagesTrackBy"
-      [package]="p"
+      [packageItem]="p"
     ></app-package>
   </div>
 </section>
