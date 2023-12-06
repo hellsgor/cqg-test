@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  height: 100%;
+  padding: 16px 0;
+}
+
+.app-component-container {
+  display: flex;
+  overflow-y: hidden;
+  flex: 1;
+  flex-direction: column;
+  row-gap: 16px;
+}
