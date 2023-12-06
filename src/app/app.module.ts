@@ -3,11 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { PackagesModule } from './modules/packages/packages.module';
-import { PackagesComponent } from './modules/packages/packages.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [AppComponent, PackagesComponent],
-  imports: [BrowserModule, PackagesModule],
+  declarations: [AppComponent],
+  imports: [BrowserModule, PackagesModule, CommonModule],
   providers: [],
   bootstrap: [AppComponent],
 })
