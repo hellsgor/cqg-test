@@ -6,4 +6,6 @@ export interface IPackage {
 
 export interface IFullPackage extends IPackage {
   dependencies: string[];
+  name: string;
+  compositeName: string | null;
 }

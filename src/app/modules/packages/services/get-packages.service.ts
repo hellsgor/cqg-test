@@ -28,19 +28,34 @@ export class GetPackagesService {
               return of({
                 ...packageItem,
                 dependencies: [],
+                compositeName: '',
+                name: '',
               });
             }
             return this.queryService.dependenciesQuery(packageItem.id).pipe(
               map((dependencies) => ({
-                ...packageItem,
+                id: packageItem.id,
+                weeklyDownloads: packageItem.weeklyDownloads,
+                dependencyCount: packageItem.dependencyCount,
                 dependencies,
+                compositeName: '',
+                name: '',
               }))
             );
           })
         );
       }),
       map((packages: IFullPackage[]) => {
+        packages.forEach((packageItem: IFullPackage) => {
+          const regExp = /(@[^\/]+\/)/;
+          const match = packageItem.id.match(regExp);
+          packageItem.compositeName = match ? match[0] : '';
+          packageItem.name = match
+            ? packageItem.id.replace(regExp, '')
+            : packageItem.id;
+        });
         this.packages$.next(packages);
+        console.log(packages);
         return packages;
       }),
       catchError((error: unknown) => {
