@@ -1,7 +1,7 @@
 <article class="package">
   <h4 class="package__title">{{packageItem?.id}}</h4>
   <div class="package__wrapper">
-    <p class="package__downloads">{{packageItem?.weeklyDownloads}}</p>
+    <p class="package__downloads">{{packageItem?.weeklyDownloads  | abbreviateNumber}}</p>
     <div class="package__dependencies-wrapper">
       <span class="package__dependencies-amount">{{packageItem?.dependencyCount}}</span>
       <span class="package__dependencies-слово">{{packageItem?.dependencyCount
