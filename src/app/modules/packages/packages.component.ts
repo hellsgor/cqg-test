@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IPackage } from './models';
+import { IFullPackage } from './models';
 import { GetPackagesService } from './services';
 import { Observable } from 'rxjs';
 
@@ -9,25 +9,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./packages.component.scss'],
 })
 export class PackagesComponent implements OnInit {
-  public packages: Observable<IPackage[]> = this.getPackagesService.getPackages(
-    {
-      protocol: 'http',
-      host: 'localhost',
-      port: 3000,
-    }
-  );
+  public packages$: Observable<IFullPackage[]> =
+    this.getPackagesService.sendPack();
 
   constructor(private getPackagesService: GetPackagesService) {}
 
   ngOnInit(): void {
-    this.getPackagesService.getPackages({
-      protocol: 'http',
-      host: 'localhost',
-      port: 3000,
-    });
-    // .subscribe((response) => {
-    //   console.log(response);
-    //   // this.packages = response;
-    // });
+    this.packages$ = this.getPackagesService.getPackages();
+  }
+
+  public packagesTrackBy(index: number, packagesItem: IFullPackage): string {
+    return packagesItem.id;
   }
 }

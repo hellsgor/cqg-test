@@ -1,9 +1,9 @@
 <article class="package">
-  <h4 class="package__title">Some text</h4>
+  <h4 class="package__title">{{package?.id}}</h4>
   <div class="package__wrapper">
-    <p class="package__downloads">50K</p>
+    <p class="package__downloads">{{package?.weeklyDownloads}}</p>
     <div class="package__dependencies-wrapper">
-      <span class="package__dependencies-amount">1</span>
+      <span class="package__dependencies-amount">{{package?.dependencyCount}}</span>
       <span class="package__dependencies-слово">dependency</span>
     </div>
   </div>

@@ -1,29 +1,57 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
-import { IPackage, IUrl } from '../models';
+import {
+  BehaviorSubject,
+  catchError,
+  forkJoin,
+  map,
+  Observable,
+  of,
+  switchMap,
+} from 'rxjs';
+import { IFullPackage, IPackage } from '../models';
+import { PackagesQueryService } from './packages-query.service';
 
 @Injectable()
 export class GetPackagesService {
-  public packages$: BehaviorSubject<IPackage[]> = new BehaviorSubject<
-    IPackage[]
+  public packages$: BehaviorSubject<IFullPackage[]> = new BehaviorSubject<
+    IFullPackage[]
   >([]);
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(private queryService: PackagesQueryService) {}
 
-  public getPackages({ protocol, host, port }: IUrl): Observable<IPackage[]> {
-    return this.http
-      .get<IPackage[]>(`${protocol}://${host}:${port}/packages`)
-      .pipe(
-        map((packages: IPackage[]) => {
-          this.packages$.next(packages);
-          console.log(packages);
-          return packages;
-        }),
-        catchError((error: unknown) => {
-          console.error('error in source. Details: ' + error);
-          return of([]);
-        })
-      );
+  public getPackages(): Observable<IFullPackage[]> {
+    return this.queryService.packagesQuery().pipe(
+      switchMap((packages: IPackage[]) => {
+        return forkJoin(
+          packages.map((packageItem: IPackage) => {
+            if (!packageItem.dependencyCount) {
+              return of({
+                ...packageItem,
+                dependencies: [],
+              });
+            }
+            return this.queryService.dependenciesQuery(packageItem.id).pipe(
+              map((dependencies) => ({
+                ...packageItem,
+                dependencies,
+              }))
+            );
+          })
+        );
+      }),
+      map((packages: IFullPackage[]) => {
+        console.log('getPackages', packages);
+        this.packages$.next(packages);
+        return packages;
+      }),
+      catchError((error: unknown) => {
+        console.error('error in source. Details: ' + error);
+        return of([]);
+      })
+    );
+  }
+
+  public sendPack(): Observable<IFullPackage[]> {
+    return this.packages$.asObservable();
   }
 }

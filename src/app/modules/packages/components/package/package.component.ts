@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
+import { IPackage } from '../../models';
 
 @Component({
   selector: 'app-package',
@@ -6,4 +12,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./package.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PackageComponent {}
+export class PackageComponent implements OnInit {
+  @Input() package: IPackage | undefined;
+
+  constructor() {}
+
+  ngOnInit(): void {}
+}

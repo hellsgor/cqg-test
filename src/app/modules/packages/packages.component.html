@@ -1,10 +1,9 @@
 <section class="packages">
   <h2>Packages</h2>
   <div class="packages__wrapper">
-    <app-package></app-package>
-    <app-package></app-package>
-    <app-package></app-package>
-    <app-package></app-package>
-    <app-package></app-package>
+    <app-package
+      *ngFor="let p of packages$ | async; trackBy: packagesTrackBy"
+      [package]="p"
+    ></app-package>
   </div>
 </section>
