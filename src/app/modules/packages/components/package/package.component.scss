@@ -1,0 +1,79 @@
+@mixin transition($prop) {
+  transition: $prop ease-in-out .3s;
+}
+
+.package {
+  $package-padding: 16px;
+  $border-radius: 16px;
+
+  min-width: 259px;
+
+  &_dependent {
+    .package__title {
+      background-color: red;
+    }
+  }
+
+  &__downloads {
+    $icon-size: 14px;
+    display: flex;
+    margin: 0;
+    align-items: center;
+    column-gap: 4px;
+
+    &::after {
+      display: flex;
+      width: $icon-size;
+      height: $icon-size;
+      align-items: center;
+      justify-content: center;
+      background: url("icons/download.svg") center no-repeat;
+      background-size: $icon-size;
+      content: '';
+    }
+  }
+
+  &__title {
+    padding: $package-padding;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+    @include transition(background-color);
+  }
+
+  &__wrapper {
+    display: flex;
+    padding: $package-padding;
+    border: 1px solid #000;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    border-top: none;
+    flex-direction: column;
+    row-gap: 8px;
+  }
+
+  &__dependencies-wrapper {
+    display: flex;
+    column-gap: 4px;
+  }
+
+  &__composite-name {
+    color: #ffa500;
+    @include transition(color);
+  }
+
+  &:hover {
+    .package {
+      &__title {
+        background-color: #ffa500;
+      }
+
+      &__composite-name {
+        color: #000;
+      }
+    }
+
+  }
+}

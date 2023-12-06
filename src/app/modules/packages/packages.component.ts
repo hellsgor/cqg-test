@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { IPackage } from './models';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { IFullPackage } from './models';
 import { GetPackagesService } from './services';
 import { Observable } from 'rxjs';
 
@@ -7,27 +7,30 @@ import { Observable } from 'rxjs';
   selector: 'app-packages',
   templateUrl: './packages.component.html',
   styleUrls: ['./packages.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PackagesComponent implements OnInit {
-  public packages: Observable<IPackage[]> = this.getPackagesService.getPackages(
-    {
-      protocol: 'http',
-      host: 'localhost',
-      port: 3000,
-    }
-  );
+  public packages$: Observable<IFullPackage[]> =
+    this.getPackagesService.sendPack();
+
+  public selectedPackageDependenciesArray: string[] = [];
 
   constructor(private getPackagesService: GetPackagesService) {}
 
   ngOnInit(): void {
-    this.getPackagesService.getPackages({
-      protocol: 'http',
-      host: 'localhost',
-      port: 3000,
-    });
-    // .subscribe((response) => {
-    //   console.log(response);
-    //   // this.packages = response;
-    // });
+    this.packages$ = this.getPackagesService.getPackages();
+  }
+
+  onSelectPackage(packageItem: IFullPackage) {
+    this.selectedPackageDependenciesArray = packageItem.dependencies;
+    console.log(this.selectedPackageDependenciesArray);
+  }
+
+  public packagesTrackBy(index: number, packagesItem: IFullPackage): string {
+    return packagesItem.id;
+  }
+
+  onUnselectPackage() {
+    this.selectedPackageDependenciesArray = [];
   }
 }
