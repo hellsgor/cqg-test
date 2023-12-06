@@ -40,7 +40,6 @@ export class GetPackagesService {
         );
       }),
       map((packages: IFullPackage[]) => {
-        console.log('getPackages', packages);
         this.packages$.next(packages);
         return packages;
       }),

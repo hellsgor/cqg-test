@@ -20,9 +20,10 @@ export class PackagesQueryService {
   }
 
   public dependenciesQuery(id: string): Observable<string[]> {
-    const encodedId = encodeURIComponent(id);
     return this.http.get<string[]>(
-      `${this.url.protocol}://${this.url.host}:${this.url.port}/packages/${encodedId}/dependencies`
+      `${this.url.protocol}://${this.url.host}:${
+        this.url.port
+      }/packages/${encodeURIComponent(id)}/dependencies`
     );
   }
 }
