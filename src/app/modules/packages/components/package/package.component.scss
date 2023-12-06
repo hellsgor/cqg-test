@@ -1,0 +1,47 @@
+.package {
+  $package-padding: 16px;
+
+  overflow: hidden;
+  min-width: 259px;
+  border: 1px solid #000;
+  border-radius: 16px;
+
+  &__downloads {
+    $icon-size: 14px;
+    display: flex;
+    margin: 0;
+    align-items: center;
+    column-gap: 4px;
+
+    &::after {
+      display: flex;
+      width: $icon-size;
+      height: $icon-size;
+      align-items: center;
+      justify-content: center;
+      background: url("icons/download.svg") center no-repeat;
+      background-size: $icon-size;
+      content: '';
+    }
+  }
+
+  &__title {
+    padding: $package-padding;
+    border-bottom: 1px solid #000;
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+  }
+
+  &__wrapper {
+    display: flex;
+    padding: $package-padding;
+    flex-direction: column;
+    row-gap: 8px;
+  }
+
+  &__dependencies-wrapper {
+    display: flex;
+    column-gap: 4px;
+  }
+}
