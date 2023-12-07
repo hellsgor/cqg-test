@@ -1,0 +1,70 @@
+:host {
+  display: flex;
+  overflow-y: hidden;
+  flex: 1;
+  flex-direction: column;
+}
+
+.packages {
+  display: flex;
+  overflow-y: hidden;
+  flex: 1;
+  flex-direction: column;
+  row-gap: 16px;
+
+  &__wrapper {
+    display: flex;
+    overflow-y: auto;
+    height: 100px;
+    padding: 20px;
+    border: 1px solid #dcdcdc;
+    border-radius: 16px;
+    flex: 1;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+
+  &__controls {
+    display: flex;
+    column-gap: 32px;
+  }
+
+  &__filter {
+    min-width: 320px;
+    padding: 8px;
+    outline: none;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    transition: border-color ease-in-out .3s;
+
+    @media(hover: hover) {
+      &:hover {
+        border-color: #000;
+      }
+    }
+
+    &:focus {
+      border-color: #000;
+    }
+  }
+
+  &__reload-button {
+    padding: 8px 16px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    background-color: #000;
+    color: #fff;
+    transition: background-color ease-in-out .15s;
+
+    @media(hover: hover) {
+      &:hover {
+        background-color: #ffa500;
+      }
+    }
+
+    &:active {
+      background-color: #bd7b02;
+    }
+  }
+}
