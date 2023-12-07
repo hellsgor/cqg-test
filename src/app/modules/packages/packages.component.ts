@@ -15,6 +15,8 @@ export class PackagesComponent implements OnInit {
 
   public selectedPackageDependenciesArray: string[] = [];
 
+  public search: string = '';
+
   constructor(private getPackagesService: GetPackagesService) {}
 
   ngOnInit(): void {
@@ -23,7 +25,6 @@ export class PackagesComponent implements OnInit {
 
   onSelectPackage(packageItem: IFullPackage) {
     this.selectedPackageDependenciesArray = packageItem.dependencies;
-    console.log(this.selectedPackageDependenciesArray);
   }
 
   public packagesTrackBy(index: number, packagesItem: IFullPackage): string {

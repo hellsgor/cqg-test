@@ -55,7 +55,6 @@ export class GetPackagesService {
             : packageItem.id;
         });
         this.packages$.next(packages);
-        console.log(packages);
         return packages;
       }),
       catchError((error: unknown) => {
