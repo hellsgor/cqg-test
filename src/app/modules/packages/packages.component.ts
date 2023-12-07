@@ -15,6 +15,8 @@ export class PackagesComponent implements OnInit {
 
   public selectedPackageDependenciesArray: string[] = [];
 
+  public search: string = '';
+
   constructor(private getPackagesService: GetPackagesService) {}
 
   ngOnInit(): void {

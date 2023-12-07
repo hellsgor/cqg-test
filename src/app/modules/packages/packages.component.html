@@ -1,13 +1,13 @@
 <section class="packages">
   <h2>Packages</h2>
   <div class="packages__controls">
-    <input class="packages__filter" placeholder="Введите название пакета" type="text">
+    <input [(ngModel)]="search" class="packages__filter" placeholder="Введите название пакета" type="text">
   </div>
   <div class="packages__wrapper">
     <app-package
       (packageSelected)="onSelectPackage($event)"
       (packageUnselected)="onUnselectPackage()"
-      *ngFor="let p of packages$ | async; trackBy: packagesTrackBy"
+      *ngFor="let p of (packages$ | async) || [] | packagesFilter:search; trackBy: packagesTrackBy"
       [isDependent]="selectedPackageDependenciesArray.includes(p.id)"
       [packageItem]="p"
     ></app-package>
