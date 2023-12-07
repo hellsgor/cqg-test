@@ -25,7 +25,6 @@ export class PackagesComponent implements OnInit {
 
   onSelectPackage(packageItem: IFullPackage) {
     this.selectedPackageDependenciesArray = packageItem.dependencies;
-    console.log(this.selectedPackageDependenciesArray);
   }
 
   public packagesTrackBy(index: number, packagesItem: IFullPackage): string {
