@@ -47,4 +47,24 @@
       border-color: #000;
     }
   }
+
+  &__reload-button {
+    padding: 8px 16px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    background-color: #000;
+    color: #fff;
+    transition: background-color ease-in-out .15s;
+
+    @media(hover: hover) {
+      &:hover {
+        background-color: #ffa500;
+      }
+    }
+
+    &:active {
+      background-color: #bd7b02;
+    }
+  }
 }

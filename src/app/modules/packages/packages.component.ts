@@ -34,4 +34,8 @@ export class PackagesComponent implements OnInit {
   onUnselectPackage() {
     this.selectedPackageDependenciesArray = [];
   }
+
+  public reloadPackages() {
+    this.packages$ = this.getPackagesService.getPackages();
+  }
 }
