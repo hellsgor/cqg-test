@@ -10,13 +10,10 @@ module.exports = {
       plugins: ["import"],
       extends: [
         "plugin:@angular-eslint/recommended",
-        // Стайл гайд AirBnB
         "airbnb-typescript/base",
-        // Настройки для Prettier
         "prettier",
       ],
       rules: {
-        // Кастомные правила
         "import/no-unresolved": "off",
         "import/prefer-default-export": "off",
         "class-methods-use-this": "off",
